@@ -10,17 +10,8 @@
         <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2DObpyadgcfLxcGzqkUuZRn9dyEeYO4U&sensor=true">
         </script>
-        <script type="text/javascript">
-            function initialize() {
-                var mapOptions = {
-                    center: new google.maps.LatLng(57.7000, 11.9667),
-                    zoom: 8
-                };
-                var map = new google.maps.Map(document.getElementById("map-canvas"),
-                        mapOptions);
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="src/main.js"></script>
     </head>
     <body>
         <div id="map-canvas"/>
