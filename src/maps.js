@@ -93,9 +93,12 @@ triffic.maps.getInfoWindowContent = function (obj) {
     return '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">' + obj.exactlocation + '</h1>'+
+        '<h1 id="firstHeading" class="firstHeading">' + obj.title + '</h1>'+
         '<div id="bodyContent">'+
+        '<p>' + obj.exactlocation + '</p>' +
         '<p>' + obj.description + '</p>' +
+        '<p>Date: ' + new Date(parseInt(obj.createddate.substr(6))) + '</p>' +
+        '<p>Underkategori: ' + obj.subcategory + '</p>' +
         '</div>'+
         '</div>';
 }
