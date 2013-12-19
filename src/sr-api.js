@@ -2,6 +2,7 @@ var triffic = triffic || {};
 
 triffic.sr = {};
 
+// http://sverigesradio.se/api/documentation/v2/metoder/trafik.html
 triffic.sr.getTrafficData = function(callback, count) {
 
     // TODO: parseInt
@@ -14,12 +15,5 @@ triffic.sr.getTrafficData = function(callback, count) {
         data: "?pagination=false&size=" + count + "&sort=createddate+desc&format=json",
         success: callback
     });
-}
-
-triffic.sr.category = {
-    0: 'Vägtrafik',
-    1: 'Kollektivtrafik',
-    2: 'Planerad störning',
-    3: 'Övrigt'
 }
 
