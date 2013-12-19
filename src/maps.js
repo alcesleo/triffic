@@ -22,6 +22,19 @@ triffic.maps.load = function () {
     triffic.maps.markers = [];
 }
 
+triffic.maps.markerColors = {
+    // Röd: Mycket allvarlig händelse
+    1: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    // Orange: Stor händelse
+    2: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+    // Gul: Störning
+    3: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+    // Blå: Information
+    4: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+    // Grön: Mindre störning
+    5: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+}
+
 /**
  * Opens the InfoWindow on a marker
  * @param  {google.maps.Marker} marker
@@ -81,6 +94,7 @@ triffic.maps.placeMarker = function (obj) {
         position: latLng,
         map: triffic.maps.map,
         title: obj.exactlocation,
+        icon: triffic.maps.markerColors[obj.priority],
         details: obj // pass along reference to the original object
     })
 
