@@ -13,7 +13,7 @@ triffic.maps.load = function () {
     triffic.maps.markers = [];
 }
 
-triffic.maps.openInfoWindow = function(marker, content) {
+triffic.maps.openInfoWindow = function (marker, content) {
     triffic.maps.infoWindow.setContent(content);
     triffic.maps.infoWindow.open(triffic.maps.map, marker);
 };
@@ -28,7 +28,7 @@ triffic.maps.openInfoWindow = function(marker, content) {
 // priority: 3
 // subcategory: "Trafikstörning"
 // title: "Västberga"
-triffic.maps.refresh = function(data) {
+triffic.maps.refresh = function (data) {
     triffic.maps.clearMarkers();
     data.messages.forEach(function (obj) {
         triffic.maps.placeMarker(obj);
@@ -38,13 +38,26 @@ triffic.maps.refresh = function(data) {
 /**
  * Remove all markers from map
  */
-triffic.maps.clearMarkers = function() {
+triffic.maps.clearMarkers = function () {
     // remove all markers from map
     for (var i = 0; i < triffic.maps.markers.length; i++) {
         triffic.maps.markers[i].setMap(null);
     }
     // empty the array
     triffic.maps.markers.length = 0;
+}
+
+triffic.maps.showCategory = function (category) {
+
+    triffic.maps.markers.forEach(function (marker) {
+        if (category < 0) {
+            // set all to visible
+            marker.setVisible(true);
+        } else {
+            // set markers in category to visible
+            marker.setVisible(category === marker.details.category)
+        }
+    });
 }
 
 /**
@@ -72,7 +85,7 @@ triffic.maps.onMarkerClick = function () {
 /**
  * Get HTML to put in InfoWindow
  */
-triffic.maps.getInfoWindowContent = function(obj) {
+triffic.maps.getInfoWindowContent = function (obj) {
     return '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
