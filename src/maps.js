@@ -32,6 +32,10 @@ triffic.maps.openInfoWindow = function (marker, content) {
     triffic.maps.infoWindow.open(triffic.maps.map, marker);
 };
 
+triffic.maps.closeInfoWindow = function () {
+    triffic.maps.infoWindow.close();
+}
+
 triffic.maps.refresh = function (data) {
     triffic.maps.clearMarkers();
     data.messages.forEach(function (obj) {
@@ -49,9 +53,12 @@ triffic.maps.clearMarkers = function () {
     }
     // empty the array
     triffic.maps.markers.length = 0;
+    triffic.maps.closeInfoWindow();
 }
 
 triffic.maps.showCategory = function (category) {
+    // close infowindow so it won't sit on an empty space
+    triffic.maps.closeInfoWindow();
 
     triffic.maps.markers.forEach(function (marker) {
         if (category < 0) {
