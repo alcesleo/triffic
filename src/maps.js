@@ -1,6 +1,15 @@
+/**
+ * Takes care of the google map. It is coupled directly to the objects
+ * returned by SR:s Traffic API, most functions use them as parameters
+ * for simplicity.
+ */
+
 var triffic = triffic || {};
 triffic.maps = {}
 
+/**
+ * Initialize the map
+ */
 triffic.maps.load = function () {
     var myLatlng = new google.maps.LatLng(62, 15);
     var mapOptions = {
@@ -13,21 +22,16 @@ triffic.maps.load = function () {
     triffic.maps.markers = [];
 }
 
+/**
+ * Opens the InfoWindow on a marker
+ * @param  {google.maps.Marker} marker
+ * @param  {string} content HTML
+ */
 triffic.maps.openInfoWindow = function (marker, content) {
     triffic.maps.infoWindow.setContent(content);
     triffic.maps.infoWindow.open(triffic.maps.map, marker);
 };
 
-// category: 0
-// createddate: "/Date(1387441031537+0100)/"
-// description: "Trafiksignalerna släckta tills vidare"
-// exactlocation: "Korsningen Västberga Allé  och Elektravägen"
-// id: 1082740
-// latitude: 59.29345563562684
-// longitude: 18.00631839055037
-// priority: 3
-// subcategory: "Trafikstörning"
-// title: "Västberga"
 triffic.maps.refresh = function (data) {
     triffic.maps.clearMarkers();
     data.messages.forEach(function (obj) {
