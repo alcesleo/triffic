@@ -1,17 +1,17 @@
 $(function () {
     'use strict';
 
+    // show the map
     triffic.maps.load();
 
-    triffic.sr.getTrafficData(function (data) {
+    // put markers on the map
+    function plotMarkers (data) {
         data.messages.forEach(function (obj) {
-            var latLng = new google.maps.LatLng(obj.latitude, obj.longitude);
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: triffic.maps.map,
-                title: obj.description
-            })
+            triffic.maps.placeMarker(obj);
         });
-    });
+    }
+
+    // Put in the traffic markers
+    triffic.sr.getTrafficData(plotMarkers);
 
 });
